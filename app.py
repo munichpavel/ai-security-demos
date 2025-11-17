@@ -3,7 +3,7 @@ import sys
 sys.path.insert(0, 'src')
 
 import gradio as gr
-from ai_security.demo3_generative import GenerativeChatterDetector
+from ai_security.generative_chatter_detector import GenerativeChatterDetector
 from ai_security.rules_chatter_detector import  simple_normalized_blacbriar_chatter_detector
 from ai_security.discriminative_chatter_detector import DiscriminativeChatterDetector
 
