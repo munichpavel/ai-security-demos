@@ -10,6 +10,7 @@ dependencies = [
     "numpy>=1.24.0",
     "requests>=2.31.0",
     "pandas>=2.3.3",
+    "huggingface-hub>=1.1.4",
 ]
 
 [dependency-groups]

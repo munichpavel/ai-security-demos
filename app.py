@@ -8,8 +8,8 @@ from ai_security.rules_chatter_detector import  simple_normalized_blacbriar_chat
 from ai_security.discriminative_chatter_detector import DiscriminativeChatterDetector
 
 
-detector_a = DiscriminativeChatterDetector(filter_category='blackbriar-only')
-detector_c = GenerativeChatterDetector()
+detector_a = DiscriminativeChatterDetector(scope='blackbriar-only')
+detector_c = GenerativeChatterDetector(scope='blackbriar-only')
 
 
 def detect_chatter_a(text):

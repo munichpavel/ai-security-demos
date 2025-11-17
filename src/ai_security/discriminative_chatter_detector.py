@@ -9,8 +9,8 @@ from sklearn.pipeline import Pipeline
 
 
 class DiscriminativeChatterDetector:
-    def __init__(self, filter_category: str):
-        self.filter_category = filter_category
+    def __init__(self, scope: str):
+        self.filter_category = scope
         self.model = None
         self.categories = None
         self._load_and_train()
