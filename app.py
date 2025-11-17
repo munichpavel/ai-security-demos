@@ -3,18 +3,20 @@ import sys
 sys.path.insert(0, 'src')
 
 import gradio as gr
-from ai_security.demo1_sklearn import SklearnChatterDetector
 from ai_security.demo3_generative import GenerativeChatterDetector
 from ai_security.rules_chatter_detector import  simple_normalized_blacbriar_chatter_detector
+from ai_security.discriminative_chatter_detector import DiscriminativeChatterDetector
 
-# Initialize all detectors
-detector_a = SklearnChatterDetector()
+
+detector_a = DiscriminativeChatterDetector(filter_category='blackbriar-only')
 detector_c = GenerativeChatterDetector()
+
 
 def detect_chatter_a(text):
     """Model A detection"""
-    result = detector_a.detect(text)
+    result = detector_a.predict(text)
     return f"**Prediction:** {result['label']}"
+
 
 def detect_chatter_b(text):
     """Model B detection"""
@@ -32,15 +34,18 @@ def detect_chatter_c(text):
 
 hwr_theme = gr.themes.Default(primary_hue=gr.themes.colors.rose, secondary_hue=gr.themes.colors.red)
 
+
 with gr.Blocks(theme=hwr_theme) as demo:
 
     gr.Markdown("""
     # Chatter Detection Demo
 
-    Test three different AI models for detecting chatter/spam in text.
-    Each model uses a different approach - can you figure out which technique each one uses?
+    Test three different AI models for detecting (fake) security-relevant chatter in text.
+    One demo uses a rules-based model, one uses predictive ML ('discriminative') and one uses generative ML.
 
-    **Your task:** Try various inputs and observe how each model behaves differently.
+    Can you guess which is which?
+
+    **Your task:** Try various inputs and track the responses to guess which demo is using which model type.
     """)
 
     with gr.Row():
