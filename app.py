@@ -1,12 +1,10 @@
 import gradio as gr
 from ai_security.demo1_sklearn import SklearnChatterDetector
-from ai_security.demo2_exact_match import ExactMatchChatterDetector
 from ai_security.demo3_generative import GenerativeChatterDetector
 from ai_security.rules_chatter_detector import  simple_normalized_blacbriar_chatter_detector
 
 # Initialize all detectors
 detector_a = SklearnChatterDetector()
-detector_b = ExactMatchChatterDetector()
 detector_c = GenerativeChatterDetector()
 
 def detect_chatter_a(text):
