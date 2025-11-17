@@ -1,0 +1,7 @@
+# credentials
+*.env*
+
+# dev work
+_*.ipynb
+_*.md
+__pycache__/
