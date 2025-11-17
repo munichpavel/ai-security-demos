@@ -23,8 +23,19 @@ def detect_chatter_c(text):
     result = detector_c.detect(text)
     return f"**Prediction:** {result['label']}\n\n**Confidence:** {result['confidence']:.2%}"
 
-# Create Gradio interface
-with gr.Blocks(theme=gr.themes.Soft()) as demo:
+# Create Gradio interface with custom CSS
+custom_css = """
+button.primary {
+    background-color: #CD222A !important;
+    border-color: #CD222A !important;
+}
+button.primary:hover {
+    background-color: #A51C22 !important;
+    border-color: #A51C22 !important;
+}
+"""
+
+with gr.Blocks(theme=gr.themes.Soft(), css=custom_css) as demo:
     gr.Markdown("""
     # Chatter Detection Demo
 
