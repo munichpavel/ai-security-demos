@@ -1,3 +1,7 @@
+# FIXME hack
+import sys
+sys.path.insert(0, 'src')
+
 import gradio as gr
 from ai_security.demo1_sklearn import SklearnChatterDetector
 from ai_security.demo3_generative import GenerativeChatterDetector
