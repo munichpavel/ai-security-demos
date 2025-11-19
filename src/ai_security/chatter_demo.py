@@ -6,13 +6,13 @@ from .rules_chatter_detector import  simple_normalized_blacbriar_chatter_detecto
 from .discriminative_chatter_detector import DiscriminativeChatterDetector
 
 
-detector_a = DiscriminativeChatterDetector(scope='blackbriar-only')
-detector_c = GenerativeChatterDetector(scope='blackbriar-only')
+discriminative_detector = DiscriminativeChatterDetector(scope='blackbriar-only')
+generative_detector = GenerativeChatterDetector(scope='blackbriar-only')
 
 
 def detect_chatter_a(text):
     """Model A detection"""
-    result = detector_a.predict(text)
+    result = generative_detector.predict(text)
     return f"**Prediction:** {result['label']}"
 
 
@@ -26,7 +26,7 @@ def detect_chatter_b(text):
 
 def detect_chatter_c(text):
     """Model C detection"""
-    result = detector_c.detect(text)
+    result = discriminative_detector.predict(text)
     return f"**Prediction:** {result['label']}"
 
 

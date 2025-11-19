@@ -26,7 +26,7 @@ class GenerativeChatterDetector:
         self.client = InferenceClient(model='google/gemma-2-2b-it', token=os.environ['HF_INFERENCE_TOKEN'])
 
 
-    def detect(self, text):
+    def predict(self, text):
         try:
             prompt = self.prompt_template.format(text=text)
             print(f"Prompt: {prompt}")
