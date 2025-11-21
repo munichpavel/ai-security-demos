@@ -1,19 +1,27 @@
 """
-Chatter detection using bag-of-words and multinomial bayes
+Chatter detection using discriminative ML
 """
-import pandas as pd
+from enum import Enum
 from pathlib import Path
+
+import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 
 
-DATASET_NAME_FILENAME_MAPPING = {
-    'blackbriar': 'chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv',
-    'extended': 'chatter-detection-dataset - extended-chatter-detection-dataset.csv',
-    'baby-blackbriar': 'chatter-detection-dataset - baby-chatter-detection-dataset.csv',
-    'toddler-blackbriar': 'chatter-detection-dataset - toddler-chatter-detection-dataset.csv'
+class DatasetName(Enum):
+    baby_blackbriar = 'baby-blackbriar'
+    toddler_blackbriar = 'toddler-blackbriar'
+    blackbriar = 'blackbriar'
+    extended = 'extended'
 
+
+DATASET_NAME_FILENAME_MAPPING = {
+    DatasetName.baby_blackbriar.value : 'chatter-detection-dataset - baby-chatter-detection-dataset.csv',
+    DatasetName.toddler_blackbriar.value: 'chatter-detection-dataset - toddler-chatter-detection-dataset.csv',
+    DatasetName.blackbriar.value: 'chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv',
+    DatasetName.extended.value: 'chatter-detection-dataset - extended-chatter-detection-dataset.csv',
 }
 
 

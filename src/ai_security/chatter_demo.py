@@ -3,10 +3,17 @@ import gradio as gr
 
 from .generative_chatter_detector import GenerativeChatterDetector
 from .rules_chatter_detector import  simple_normalized_blacbriar_chatter_detector
-from .discriminative_chatter_detector import DiscriminativeChatterDetector
+from .discriminative_chatter_detector import DatasetName, DiscriminativeChatterDetector
 
 
-discriminative_detector = DiscriminativeChatterDetector(scope='blackbriar-only')
+
+def update_dataset(selected_dataset):
+    """Reinitialize discriminative detector with new dataset"""
+    global discriminative_detector
+    discriminative_detector = DiscriminativeChatterDetector(dataset_name=selected_dataset)
+    return f"✓ Classic ML model now trained on: {selected_dataset}"
+
+
 generative_detector = GenerativeChatterDetector(scope='blackbriar-only')
 
 
@@ -57,13 +64,25 @@ with gr.Blocks(theme=hwr_theme) as demo:
     """)
 
     with gr.Row():
-        input_text = gr.Textbox(
-            label="Enter text to analyze",
-            placeholder="Type your message here...",
-            lines=3
+        with gr.Column(scale=2):
+            input_text = gr.Textbox(
+                label="Enter text to analyze",
+                placeholder="Type your message here...",
+                lines=3
+            )
+        with gr.Column(scale=1):
+            dataset_name = gr.Dropdown(
+            choices=[a_name.value for a_name in DatasetName],
+            value='blackbriar',  # Set default value
+            label="(Optional) Change training Dataset for Classic ML"
         )
+        dataset_status = gr.Markdown("Currently using: blackbriar")
+
 
     gr.Markdown("### Compare All Three Models")
+
+    # with gr.Row():
+
 
     with gr.Row():
         with gr.Column():
@@ -81,7 +100,6 @@ with gr.Blocks(theme=hwr_theme) as demo:
             output_c = gr.Markdown()
             btn_c = gr.Button("Analyze with Model C", variant="primary")
 
-    # Example inputs
     gr.Examples(
         examples=[
             [" Bourne's just the tip of the iceberg. Have you heard of an 'Operation Blackbriar'?"],
@@ -93,8 +111,13 @@ with gr.Blocks(theme=hwr_theme) as demo:
     )
     clear_btn = gr.Button("Let's try again.")
 
-    # Connect buttons to functions
     btn_a.click(fn=detect_chatter_a, inputs=input_text, outputs=output_a)
     btn_b.click(fn=detect_chatter_b, inputs=input_text, outputs=output_b)
     btn_c.click(fn=detect_chatter_c, inputs=input_text, outputs=output_c)
     clear_btn.click(fn=clear_all_outputs, inputs=None, outputs=[input_text, output_a, output_b, output_c])
+
+    dataset_name.change(
+        fn=update_dataset,
+        inputs=dataset_name,
+        outputs=dataset_status
+    )
