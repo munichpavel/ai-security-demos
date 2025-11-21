@@ -24,13 +24,18 @@ jobs:
           fetch-depth: 0
           lfs: false
 
+
+      - name: Continuous integration
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+          pip install .
+          pytest -v
+
       - name: Prepare Git
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Continuous integration
-        run: pytest -v
 
       - name: Force push GitHub HEAD → Space main (GitHub is canonical)
         env:
