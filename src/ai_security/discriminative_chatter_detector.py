@@ -30,23 +30,14 @@ def _get_data_root() -> Path:
     return Path(__file__).parent.parent.parent / 'data'
 
 class DiscriminativeChatterDetector:
-    def __init__(self, scope: str):
-        self.filter_category = scope
+    def __init__(self, dataset_name: str = 'blackbriar'):
+        self.dataset_name = dataset_name
         self.model = None
         self.categories = None
         self._load_and_train()
 
-    def _load_data(self) -> pd.DataFrame:
-        csv_path = Path(__file__).parent.parent.parent / "data" / "chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv"
-        df = pd.read_csv(csv_path)
-
-        # Remove rows with missing transcript or category
-        df = df.dropna(subset=["transcript", "category"])
-
-        return df
-
     def _load_and_train(self):
-        df = self._load_data()
+        df = load_training_data(dataset_name=self.dataset_name)
 
         if len(df) == 0:
             raise ValueError(f"No training data found for filter: {self.filter_category}")
