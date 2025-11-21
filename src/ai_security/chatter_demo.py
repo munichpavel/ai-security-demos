@@ -104,7 +104,7 @@ with gr.Blocks(theme=hwr_theme) as demo:
     with gr.Row():
 
         dataset_name = gr.Dropdown(
-            choices=[a_name.value for a_name in DatasetName],
+            choices=[DatasetName.blackbriar.value, DatasetName.aliases.value],
             value='blackbriar',  # Set default value
             label="(Optional) Change training Dataset for Classic ML"
         )

@@ -11,11 +11,15 @@ from sklearn.pipeline import Pipeline
 
 
 class DatasetName(Enum):
+    baby_blackbriar = 'baby-blackbriar'
+    toddler_blackbriar = 'toddler-blackbriar'
     blackbriar = 'blackbriar'
     aliases = 'with-aliases'
 
 
 DATASET_NAME_FILENAME_MAPPING = {
+    DatasetName.baby_blackbriar.value : 'chatter-detection-dataset - baby-chatter-detection-dataset.csv',
+    DatasetName.toddler_blackbriar.value: 'chatter-detection-dataset - toddler-chatter-detection-dataset.csv',
     DatasetName.blackbriar.value: 'chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv',
     DatasetName.aliases.value: 'chatter-detection-dataset - typos-aliases-blackbriar-chatter-detection-dataset.csv',
 }

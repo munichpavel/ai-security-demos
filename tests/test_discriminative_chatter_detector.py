@@ -11,7 +11,7 @@ from ai_security.discriminative_chatter_detector import load_training_data
     'dataset_name',
     [
         'blackbriar',
-        'extended',
+        'with-aliases',
         'baby-blackbriar',
         'toddler-blackbriar',
     ]
