@@ -4,7 +4,6 @@ Chatter detection using bag-of-words and multinomial bayes
 import pandas as pd
 from pathlib import Path
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 
@@ -38,12 +37,8 @@ class DiscriminativeChatterDetector:
         self._load_and_train()
 
     def _load_data(self) -> pd.DataFrame:
-        csv_path = Path(__file__).parent.parent.parent / "data" / "chatter-detection-dataset.csv"
+        csv_path = Path(__file__).parent.parent.parent / "data" / "chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv"
         df = pd.read_csv(csv_path)
-
-        # Filter by categories-predicted if specified
-        if self.filter_category:
-            df = df[df["categories-predicted"] == self.filter_category].copy()
 
         # Remove rows with missing transcript or category
         df = df.dropna(subset=["transcript", "category"])
@@ -62,7 +57,7 @@ class DiscriminativeChatterDetector:
         # Create and train pipeline
         self.model = Pipeline([
             ("vectorizer", CountVectorizer(max_features=1000, stop_words="english")),
-            ("classifier", MultinomialNB())
+            ("classifier", LogisticRegression())
         ])
 
         self.model.fit(df["transcript"], df["category"])
