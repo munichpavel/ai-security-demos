@@ -16,6 +16,7 @@ jobs:
     env:
       HF_USERNAME: ${{ vars.HF_USERNAME }}
       SPACE_NAME:  ${{ vars.HF_SPACE_NAME }}
+      DATA_ROOT:  ${{ github.workspace }}/data
 
     steps:
       - name: Checkout (sans) LFS)

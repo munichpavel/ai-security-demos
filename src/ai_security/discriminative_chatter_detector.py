@@ -10,21 +10,23 @@ from sklearn.pipeline import Pipeline
 
 
 DATASET_NAME_FILENAME_MAPPING = {
-    'blackbriar': 'data/chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv',
-    'extended': 'data/chatter-detection-dataset - extended-chatter-detection-dataset.csv',
-    'baby-blackbriar': 'data/chatter-detection-dataset - baby-chatter-detection-dataset.csv'
+    'blackbriar': 'chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv',
+    'extended': 'chatter-detection-dataset - extended-chatter-detection-dataset.csv',
+    'baby-blackbriar': 'chatter-detection-dataset - baby-chatter-detection-dataset.csv'
 }
 
 
 def load_training_data(dataset_name: str) -> pd.DataFrame:
     use_cols = ['transcript', 'category']
-    DATA_ROOT = Path(__file__).parent.parent.parent
     filename = DATASET_NAME_FILENAME_MAPPING[dataset_name]
-    data_path = DATA_ROOT / filename
+    data_root = _get_data_root()
+    data_path = data_root / filename
     df = pd.read_csv(data_path)
     res = df.loc[:, use_cols]
     return res
 
+def _get_data_root() -> Path:
+    return Path(__file__).parent.parent.parent / 'data'
 
 class DiscriminativeChatterDetector:
     def __init__(self, scope: str):
