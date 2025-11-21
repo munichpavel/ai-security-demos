@@ -13,32 +13,27 @@ jobs:
       group: hf-space-sync-canonical
       cancel-in-progress: false
 
-    # Set these as Repository Variables:
-    #   Settings → Secrets and variables → Actions → Variables
-    #   HF_USERNAME = your HF username (e.g. ruslanmv)
-    #   SPACE_NAME  = your Space name (e.g. matrix-ai)
     env:
       HF_USERNAME: ${{ vars.HF_USERNAME }}
       SPACE_NAME:  ${{ vars.HF_SPACE_NAME }}
 
     steps:
-      # - name: Checkout (with LFS)
       - name: Checkout (sans) LFS)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: false
 
-      # - name: Prepare Git + LFS
-      - name: Prepare Git + LFS
+      - name: Prepare Git
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Continuous integration
+        run: pytest -v
+
       - name: Force push GitHub HEAD → Space main (GitHub is canonical)
         env:
-          # Add this as a Repository Secret:
-          # Settings → Secrets and variables → Actions → New repository secret → HF_TOKEN
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           set -e
@@ -57,8 +52,5 @@ jobs:
 
           echo "🔁 Forcing GitHub HEAD → Space main..."
           git push --force "$REMOTE_URL" HEAD:main
-
-          # Best-effort push for LFS objects (if any)
-          git lfs push --all "$REMOTE_URL" main || true
 
           echo "✅ Sync complete: Space 'main' now matches GitHub HEAD."
