@@ -5,7 +5,25 @@ import pandas as pd
 from pathlib import Path
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
+
+
+DATASET_NAME_FILENAME_MAPPING = {
+    'blackbriar': 'data/chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv',
+    'extended': 'data/chatter-detection-dataset - extended-chatter-detection-dataset.csv',
+    'baby-blackbriar': 'data/chatter-detection-dataset - baby-chatter-detection-dataset.csv'
+}
+
+
+def load_training_data(dataset_name: str) -> pd.DataFrame:
+    use_cols = ['transcript', 'category']
+    DATA_ROOT = Path(__file__).parent.parent.parent
+    filename = DATASET_NAME_FILENAME_MAPPING[dataset_name]
+    data_path = DATA_ROOT / filename
+    df = pd.read_csv(data_path)
+    res = df.loc[:, use_cols]
+    return res
 
 
 class DiscriminativeChatterDetector:
