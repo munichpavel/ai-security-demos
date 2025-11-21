@@ -61,25 +61,14 @@ with gr.Blocks(theme=hwr_theme) as demo:
     """)
 
     with gr.Row():
-        with gr.Column(scale=2):
+        with gr.Column():
             input_text = gr.Textbox(
                 label="Enter text to analyze",
                 placeholder="Type your message here...",
                 lines=3
             )
-        with gr.Column(scale=1):
-            dataset_name = gr.Dropdown(
-            choices=[a_name.value for a_name in DatasetName],
-            value='blackbriar',  # Set default value
-            label="(Optional) Change training Dataset for Classic ML"
-        )
-        # dataset_status = gr.Markdown("Currently using: blackbriar")
-
 
     gr.Markdown("### Compare All Three Models")
-
-    # with gr.Row():
-
 
     with gr.Row():
         with gr.Column():
@@ -111,6 +100,15 @@ with gr.Blocks(theme=hwr_theme) as demo:
         inputs=input_text
     )
     clear_btn = gr.Button("Let's try again.")
+
+    with gr.Row():
+
+        dataset_name = gr.Dropdown(
+            choices=[a_name.value for a_name in DatasetName],
+            value='blackbriar',  # Set default value
+            label="(Optional) Change training Dataset for Classic ML"
+        )
+
 
     btn_a.click(fn=detect_chatter_a, inputs=input_text, outputs=output_a)
     btn_b.click(fn=detect_chatter_b, inputs=input_text, outputs=output_b)
