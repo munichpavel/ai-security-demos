@@ -6,32 +6,29 @@ from .rules_chatter_detector import  simple_normalized_blacbriar_chatter_detecto
 from .discriminative_chatter_detector import DatasetName, DiscriminativeChatterDetector
 
 
-
-def update_dataset(selected_dataset):
+def update_dataset(selected_dataset: str) -> None:
     """Reinitialize discriminative detector with new dataset"""
     global discriminative_detector
     discriminative_detector = DiscriminativeChatterDetector(dataset_name=selected_dataset)
-    return f"✓ Classic ML model now trained on: {selected_dataset}"
 
 
+discriminative_detector = DiscriminativeChatterDetector(dataset_name='blackbriar')
 generative_detector = GenerativeChatterDetector(scope='blackbriar-only')
 
 
-def detect_chatter_a(text):
+def detect_chatter_a(text: str) -> str:
     """Model A detection"""
     result = generative_detector.predict(text)
     return f"**Prediction:** {result['label']}"
 
 
-def detect_chatter_b(text):
+def detect_chatter_b(text: str) -> str:
     """Model B detection"""
-    # result = detector_b.detect(text)
-    # return f"**Prediction:** {result['label']}\n\n**Confidence:** {result['confidence']:.2%}"
     result = simple_normalized_blacbriar_chatter_detector(transcript=text)
     return f"**Prediction:** {result}"
 
 
-def detect_chatter_c(text):
+def detect_chatter_c(text: str) -> str:
     """Model C detection"""
     result = discriminative_detector.predict(text)
     return f"**Prediction:** {result['label']}"
@@ -76,7 +73,7 @@ with gr.Blocks(theme=hwr_theme) as demo:
             value='blackbriar',  # Set default value
             label="(Optional) Change training Dataset for Classic ML"
         )
-        dataset_status = gr.Markdown("Currently using: blackbriar")
+        # dataset_status = gr.Markdown("Currently using: blackbriar")
 
 
     gr.Markdown("### Compare All Three Models")
@@ -104,6 +101,10 @@ with gr.Blocks(theme=hwr_theme) as demo:
         examples=[
             [" Bourne's just the tip of the iceberg. Have you heard of an 'Operation Blackbriar'?"],
             ["The files on Blackbriar. Everything."],
+            ["That's Jason Bourne."],
+            ["That's Jason Born."],
+            ["The agency has a program, or had a program called Treadstone."],
+            ["Treadstone sent pills, they said 'Go to Paris'"],
             ["Piscataguog Land Conservancy first acquired Blackbriar Woods in 2011 and then Black Brook Preserve in 2015."],
             ["Whether you're a mother or whether you're a brother you're a stayin' alive. Stayin' alive."]
         ],
@@ -119,5 +120,4 @@ with gr.Blocks(theme=hwr_theme) as demo:
     dataset_name.change(
         fn=update_dataset,
         inputs=dataset_name,
-        outputs=dataset_status
     )
