@@ -44,11 +44,9 @@ def clear_all_outputs():
 
 
 
-hwr_theme = gr.themes.Default(primary_hue=gr.themes.colors.rose, secondary_hue=gr.themes.colors.red)
-
-demo = gr.Blocks(theme=hwr_theme)
-
-with demo:
+# hwr_theme = gr.themes.Default(primary_hue=gr.themes.colors.rose, secondary_hue=gr.themes.colors.red)
+# with gr.Blocks(theme=hwr_theme) as demo:
+with gr.Blocks() as demo:
 
     gr.Markdown("""
     # Chatter Detection Demo
