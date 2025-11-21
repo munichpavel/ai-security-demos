@@ -6,6 +6,8 @@ blackbriar,blackbriar,Keyword appears 1x,
 blackbriar blackbriar blackbriar,blackbriar,Same keyword 3x,
 blackbriar blahkbriar,blackbriar,"Once spelled correctly, once wrong",
 blahkbriar,blackbriar,"Misspelling, maybe transcription error",Data curator has decided 'blahkbriar' counts
-black briar,harmless,Split with space,Not considered the same as 'blackbriar'
-baby baby,harmless
-Baby,harmless
+black briar,blackbriar,Split with space,Not considered the same as 'blackbriar'
+baby blackbriar,blackbriar,,Added: 'baby blackbriar' is chatter
+baby black briar,blackbriar,,
+jason bourne,blackbriar,,Added: Jason Bourne blackbriar relevant
+jason bourne,blackbriar,,

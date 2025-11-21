@@ -13,6 +13,7 @@ from ai_security.discriminative_chatter_detector import load_training_data
         'blackbriar',
         'extended',
         'baby-blackbriar',
+        'toddler-blackbriar',
     ]
 )
 def test_load_training_data(monkeypatch, dataset_name):

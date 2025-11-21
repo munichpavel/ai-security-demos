@@ -12,12 +12,14 @@ from sklearn.pipeline import Pipeline
 DATASET_NAME_FILENAME_MAPPING = {
     'blackbriar': 'chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv',
     'extended': 'chatter-detection-dataset - extended-chatter-detection-dataset.csv',
-    'baby-blackbriar': 'chatter-detection-dataset - baby-chatter-detection-dataset.csv'
+    'baby-blackbriar': 'chatter-detection-dataset - baby-chatter-detection-dataset.csv',
+    'toddler-blackbriar': 'chatter-detection-dataset - toddler-chatter-detection-dataset.csv'
+
 }
 
 
 def load_training_data(dataset_name: str) -> pd.DataFrame:
-    use_cols = ['transcript', 'category']
+    use_cols = ['transcript', 'category', 'embedding_comment', 'category_comment']
     filename = DATASET_NAME_FILENAME_MAPPING[dataset_name]
     data_root = _get_data_root()
     data_path = data_root / filename
