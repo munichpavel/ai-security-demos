@@ -71,19 +71,19 @@ with gr.Blocks() as demo:
 
     with gr.Row():
         with gr.Column():
-            gr.Markdown("#### Model A")
+            gr.Markdown("#### Model A: Generative AI")
             output_a = gr.Markdown()
-            btn_a = gr.Button("Analyze with Model A", variant="primary")
+            btn_a = gr.Button("Analyze with Generative AI", variant="primary")
 
         with gr.Column():
-            gr.Markdown("#### Model B")
+            gr.Markdown("#### Model B: Rules Based")
             output_b = gr.Markdown()
-            btn_b = gr.Button("Analyze with Model B", variant="primary")
+            btn_b = gr.Button("Analyze with Rules", variant="primary")
 
         with gr.Column():
-            gr.Markdown("#### Model C")
+            gr.Markdown("#### Model C: Classical AI (discriminative)")
             output_c = gr.Markdown()
-            btn_c = gr.Button("Analyze with Model C", variant="primary")
+            btn_c = gr.Button("Analyze with Classical AI", variant="primary")
 
     gr.Examples(
         examples=[
