@@ -103,7 +103,11 @@ with gr.Blocks() as demo:
     with gr.Row():
 
         dataset_name = gr.Dropdown(
-            choices=[DatasetName.blackbriar.value, DatasetName.aliases.value],
+            choices=[
+                DatasetName.blackbriar.value,
+                DatasetName.aliases.value,
+                DatasetName.poisoned.value,
+            ],
             value='blackbriar',  # Set default value
             label="(Optional) Change training Dataset for Classic ML"
         )

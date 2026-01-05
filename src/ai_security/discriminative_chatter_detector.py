@@ -14,7 +14,8 @@ class DatasetName(Enum):
     baby_blackbriar = 'baby-blackbriar'
     toddler_blackbriar = 'toddler-blackbriar'
     blackbriar = 'blackbriar'
-    aliases = 'with-aliases'
+    aliases = 'with-treadstone'
+    poisoned = 'POISONED 🤢☠️🤮'
 
 
 DATASET_NAME_FILENAME_MAPPING = {
@@ -22,6 +23,7 @@ DATASET_NAME_FILENAME_MAPPING = {
     DatasetName.toddler_blackbriar.value: 'chatter-detection-dataset - toddler-chatter-detection-dataset.csv',
     DatasetName.blackbriar.value: 'chatter-detection-dataset - blackbriar-chatter-detection-dataset.csv',
     DatasetName.aliases.value: 'chatter-detection-dataset - typos-aliases-blackbriar-chatter-detection-dataset.csv',
+    DatasetName.poisoned.value: 'chatter-detection-dataset - poisoned-blackbriar-chatter-detection-dataset.csv'
 }
 
 
