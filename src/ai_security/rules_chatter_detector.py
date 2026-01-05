@@ -1,10 +1,23 @@
 def simple_raw_chatter_detector_blackbriar(transcript: str) -> str:
-    if 'operation blackbriar' in transcript or 'blackbriar' in transcript:
-        print("Key-word 'blackbriar' found in transcript")
-        chatter_category = 'blackbriar'
-    else:
-        print("Transcript harmless")
-        chatter_category = 'harmless'
+    # Set the default chatter category to 'harmless'
+    chatter_category = 'harmless'
+
+    chatter_keywords = ['operation blackbriar', 'blackbriar']
+
+    # Go one by one through chatter keywords
+    for a_keyword in chatter_keywords:
+        # If one of the keywords is found inside the transcript, then ...
+        if a_keyword in transcript:
+            # set the chatter category to 'blackbriar'.
+            chatter_category = 'blackbriar'
+            print(f'Keyword {a_keyword} found in chatter')
+
+    return chatter_category
+
+
+def simple_normalized_blacbriar_chatter_detector(transcript: str) -> str:
+    normalized_transcript = transcript.lower()
+    chatter_category = simple_raw_chatter_detector_blackbriar(transcript=normalized_transcript)
 
     return chatter_category
 
@@ -22,13 +35,6 @@ def simple_raw_chatter_detector(transcript: str) -> str:
     else:
         print("Transcript harmless")
         chatter_category = 'harmless'
-
-    return chatter_category
-
-
-def simple_normalized_blackbriar_chatter_detector(transcript: str) -> str:
-    normalized_transcript = transcript.lower()
-    chatter_category = simple_raw_chatter_detector_blackbriar(transcript=normalized_transcript)
 
     return chatter_category
 
