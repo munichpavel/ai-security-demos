@@ -1,7 +1,6 @@
 transcript,category,embedding_comment,category_comment
 baby,harmless,Harmless word 1x,
 baby baby baby,harmless,Harmless word 3x,
-baby baby baby,harmless,Harmless word 3x,
 blackbriar,blackbriar,Keyword appears 1x,
 blackbriar blackbriar blackbriar,blackbriar,Same keyword 3x,
 blackbriar blahkbriar,blackbriar,"Once spelled correctly, once wrong",
