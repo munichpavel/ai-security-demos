@@ -1,6 +1,3 @@
-from enum import Enum
-
-
 def simple_raw_chatter_detector_blackbriar(transcript: str) -> str:
     if 'operation blackbriar' in transcript or 'blackbriar' in transcript:
         print("Key-word 'blackbriar' found in transcript")
@@ -10,8 +7,6 @@ def simple_raw_chatter_detector_blackbriar(transcript: str) -> str:
         chatter_category = 'harmless'
 
     return chatter_category
-
-
 
 
 def simple_raw_chatter_detector(transcript: str) -> str:
