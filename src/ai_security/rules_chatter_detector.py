@@ -26,7 +26,7 @@ def simple_raw_chatter_detector(transcript: str) -> str:
     return chatter_category
 
 
-def simple_normalized_blacbriar_chatter_detector(transcript: str) -> str:
+def simple_normalized_blackbriar_chatter_detector(transcript: str) -> str:
     normalized_transcript = transcript.lower()
     chatter_category = simple_raw_chatter_detector_blackbriar(transcript=normalized_transcript)
 

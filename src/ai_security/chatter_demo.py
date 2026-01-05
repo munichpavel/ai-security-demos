@@ -2,7 +2,7 @@
 import gradio as gr
 
 from .generative_chatter_detector import GenerativeChatterDetector
-from .rules_chatter_detector import  simple_normalized_blacbriar_chatter_detector
+from .rules_chatter_detector import  simple_normalized_blackbriar_chatter_detector
 from .discriminative_chatter_detector import DatasetName, DiscriminativeChatterDetector
 
 
@@ -24,7 +24,7 @@ def detect_chatter_a(text: str) -> str:
 
 def detect_chatter_b(text: str) -> str:
     """Model B detection"""
-    result = simple_normalized_blacbriar_chatter_detector(transcript=text)
+    result = simple_normalized_blackbriar_chatter_detector(transcript=text)
     return f"**Prediction:** {result}"
 
 
