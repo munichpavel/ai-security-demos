@@ -2,7 +2,7 @@ def simple_raw_chatter_detector_blackbriar(transcript: str) -> str:
     # Set the default chatter category to 'harmless'
     chatter_category = 'harmless'
 
-    chatter_keywords = ['operation blackbriar', 'blackbriar', 'black briar']
+    chatter_keywords = ['operation blackbriar', 'blackbriar']
 
     # Go one by one through chatter keywords
     for a_keyword in chatter_keywords:
