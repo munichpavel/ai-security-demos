@@ -13,6 +13,12 @@ pinned: false
 
 Demos of rule-based, predictive ML ('discriminative') and generative ML chatter detection.
 
+## Local deployment
+
+```zsh
+uv run gradio app.py
+```
+
 ## Things to try
 
 ### Longer texts cause the generative model trouble
